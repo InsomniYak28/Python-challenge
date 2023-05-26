@@ -1,6 +1,5 @@
 import os
 import csv
-from csv import DictReader
 
 #creating path to csv file and defining it as dict reader, setting delimiter
 election_data_csv = os.path.join("Resources", "election_data.csv")
@@ -9,32 +8,40 @@ csv_file = open(election_data_csv, 'r', encoding='utf-8')
 csv_reader = csv.reader(csv_file, delimiter=",")
 csv_header = next(csv_file)
 
+cand_dict = {}
+cand_list = []
 #total number of votes
 total_vote_IDs = 0
 for row in csv_reader:
     total_vote_IDs += 1
-print(f"Total number of voter IDs in database: {total_vote_IDs} ")
-
-#list of candidates who received votes
-runnersup = []
-candidate = 0
-#create empty list for runners up, find each unique value in "Candidate" column, print list
-for candidate in range(2, row("Candidate")):
-    runnersup.append(candidate)
-print(f"There are (len{runnersup}) candidates who received votes; they are {runnersup} ")
-
-#total number of votes each candidate won
-#loop through rows to count how many times each candidates name is listed
-
-count = 0
-#for balet in range(0, row("ballot ID"))
-#while ballot = runnersup[0]:
-#count += ballot
-#elseif end
+    if row[2] not in cand_list:
+        cand_list.append(row[2])
+        cand_dict [row[2]] = 0
+    cand_dict [row[2]] += 1
+#print(f"Total number of voter IDs in database: {total_vote_IDs} ")
+#print(f"There are {len(cand_list)} candidates who received votes; they are {cand_list} ")
+#print(f"votes per candidate: {cand_dict}")
 
 #percentage of votes each candidate won
+percentages = {key: round((val / total_vote_IDs) * 100,3) for key, val in cand_dict.items()}
+#print(f"Votes won by percent: {percentages}")
+#print(f"The winner based on popular votes is {max(cand_dict)}")
 
-#winner of election based on popular vote
-#print candidate w highest percent
+output1 = (
+f"Election Results\n"
+f"-------------------------\n"
+f"Total Votes: {total_vote_IDs}\n"
+f"-------------------------\n")
+output2 =""
+for k, v in cand_dict.items():
+    output2 += (f"{k}: {percentages[k]}% ({v})\n")
 
-#export text file w results
+
+output3 = (f"-------------------------\n"
+f"Winner: {max(cand_dict,key=cand_dict.get)}\n"
+f"-------------------------")
+output = output1 + output2 + output3
+print(output)
+
+output_file = open("Analysis/election_analysis.txt", 'wt')
+output_file.write(output)

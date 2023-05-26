@@ -44,9 +44,14 @@ decrease_formated = "${:,.2f}".format(greatest_decrease)
 print(f"the greatest decrease in profit was - {decrease_formated} ")
 
 #export text file
-f = open("py_bank_analysis.txt", "w")
-f.write("Total number of months in database: 86 months ")
-f.write("The average changes in profits and losses from month to month is $36.83 ")
-f.write("The greatest increase in profit was $90.00 ")
-f.write("The greatest decrease in profit was - $2.00 ")
-f.close()
+output = (
+f"Finacial Results\n"
+f"-------------------------\n"
+f"Total Months: {total_months}\n"
+f"Total Revenue: {revenue_formated} \n"
+f"Average Change: {average_formated}\n"
+f"Greatest increase in profits: {increase_formated}\n"
+f"Greatest decrease in profits: -{decrease_formated}")
+print(output)
+output_file = open("Analysis/bank_analysis.txt", 'wt')
+output_file.write(output)

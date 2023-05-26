@@ -1,0 +1,7 @@
+Finacial Results
+-------------------------
+Total Months: 86
+Total Revenue: $78.00 
+Average Change: $36.83
+Greatest increase in profits: $90.00
+Greatest decrease in profits: $2.00
