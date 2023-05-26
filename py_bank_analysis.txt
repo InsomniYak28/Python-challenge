@@ -1,1 +1,0 @@
-Total number of months in database: 86 months The average changes in profits and losses from month to month is $36.83 The greatest increase in profit was $90.00 The greatest decrease in profit was - $2.00 
